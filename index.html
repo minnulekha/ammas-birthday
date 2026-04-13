@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Amma 💖</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio id="bg-music" loop>
+        <source src="song.mp3" type="audio/mpeg">
+    </audio>
+    
+    <section id="screen-home" class="screen active">
+        <div class="content">
+            <h1 class="elegant-title">Happy Birthday, Amma 💖.</h1>
+            <p class="subtitle">To the most elegant woman I know.</p>
+            
+            <div class="polaroid-gallery">
+                <div class="polaroid p1">
+                    <img src="mom2.jpeg" alt="Treasured moments" class="photo-placeholder">
+                    <div class="caption">Treasured<br>Moments</div>
+                </div>
+                <div class="polaroid p2">
+                    <img src="mom13.jpeg" alt="Amma and me" class="photo-placeholder">
+                    <div class="caption">Amma & Me</div>
+                </div>
+                <div class="polaroid p3">
+                    <img src="mom3.jpeg" alt="Love you forever" class="photo-placeholder">
+                    <div class="caption">Love You<br>Forever</div>
+                </div>
+            </div>
+
+            <p class="hint" style="margin-top: 2rem;">Find the spark to begin...</p>
+            <div id="reveal-trigger" class="hidden-spark">✦</div>
+        </div>
+    </section>
+
+    <section id="screen-cake" class="screen">
+        <div class="content">
+            <h2 class="gold-text">Make a Wish, Amma! 💖</h2>
+            
+            <div class="cake-area">
+                <div class="cake-container">
+                    <div class="candle">
+                        <div id="smoke" class="smoke hidden"></div>
+                        <div id="flame" class="flame"></div>
+                        <div class="candle-body"></div>
+                    </div>
+                    <div class="cake-base">
+                        <div class="cake-main"></div>
+                        <div id="slice" class="cake-slice"></div>
+                    </div>
+                </div>
+                <div id="knife" class="knife-tool">🔪</div>
+            </div>
+
+            <div class="controls">
+                <button id="btn-light" class="gold-btn action-btn">✦ Light the Candle ✦</button>
+                <p id="instruction" class="hint hidden"></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="screen-balloons" class="screen">
+        <div class="content">
+            <h2 class="gold-text">Pop the balloons!</h2>
+            <div class="balloon-container">
+                <div class="balloon-wrapper">
+                    <span class="hidden-word">You</span>
+                    <div class="balloon">🎈</div>
+                </div>
+                <div class="balloon-wrapper">
+                    <span class="hidden-word">Are</span>
+                    <div class="balloon">🎈</div>
+                </div>
+                <div class="balloon-wrapper">
+                    <span class="hidden-word">The</span>
+                    <div class="balloon">🎈</div>
+                </div>
+                <div class="balloon-wrapper">
+                    <span class="hidden-word">Best!</span>
+                    <div class="balloon">🎈</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="screen-photos" class="screen">
+        <div class="content">
+            <h2 class="gold-text">Sweet Memories</h2>
+            <p class="hint">Sit back and enjoy...</p>
+            <div class="photo-stage">
+                <div class="photo-frame single-frame">
+                    <img id="slideshow-img" src="mom1.jpeg" alt="Memory">
+                </div>
+            </div>
+            <button id="skip-slideshow-btn" class="action-btn" style="margin-top: 2rem; font-size: 1rem;">Skip Slideshow ⟶</button>
+            <p class="hint">(Or tap photo to advance)</p>
+        </div>
+    </section>
+
+  <section id="screen-message" class="screen">
+        <div class="content">
+            <h2 class="gold-text">A Special Message</h2>
+            <div id="envelope" class="interactive-item">
+                <span id="envelope-icon">💌</span>
+                <p class="hint">Tap to Open</p>
+            </div>
+            
+            <div id="open-letter" class="letter-content hidden">
+                <div class="scrollable-letter">
+                    <p class="elegant-script greeting">Amma,</p>
+                    <p class="elegant-script body-text">I don’t usually say things like this, and you know that. So this might feel a little different.</p>
+                    <p class="elegant-script body-text">But I just want you to know… I am really proud of you.</p>
+                    <p class="elegant-script body-text">The way you have lived your life — studying so much, building your career, becoming the first woman range officer, and even after all that, continuing to learn and grow — it’s honestly something I admire a lot. Even after having us, you still pushed yourself and completed LLB. Not many people can do that.</p>
+                    <p class="elegant-script body-text">Now also, the way you wake up early, go for swimming, take care of your health, manage your work, and still handle everything at home… I see it, even if I don’t always say it.</p>
+                    <p class="elegant-script body-text">I know these days you feel like we are not spending enough time with you. Maybe we really didn’t show it properly… but it’s not because we don’t care. It’s just that we get caught up in our own things.</p>
+                    <p class="elegant-script body-text">But you matter to us. A lot.</p>
+                    <p class="elegant-script body-text">And I know how you make our birthdays special every time… so this time, I wanted to do something for you.</p>
+                    <p class="elegant-script body-text">Happy Birthday Amma ❤️</p>
+                    <p class="elegant-script body-text">And yeah… we should have tea together more often.</p>
+                    <p class="elegant-script sign-off">Love you forever! ❤️</p>
+                </div>
+                <p class="hint continue-hint">(Tap the letter to continue)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="screen-gift" class="screen">
+        <div class="content">
+            <h2 class="gold-text">One Last Thing...</h2>
+            <div id="gift-box" class="interactive-item">
+                <span id="gift-emoji">🎁</span>
+                <p class="hint">Tap the gift</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="screen-watch-box" class="screen">
+        <div class="content">
+            <h2 class="gold-text">For You...</h2>
+            <div id="watch-box-item" class="watch-container interactive-item">
+                <img src="watch.png" alt="A wrapped gift box" class="watch-photo">
+            </div>
+            <p class="hint" style="margin-top: 15px;">Tap the box to open it</p>
+        </div>
+    </section>
+
+    <section id="screen-watch-reveal" class="screen">
+        <div class="content">
+            <h2 class="gold-text">Happy Birthday Amma!💖</h2>
+            <div id="watch-reveal-item" class="watch-container interactive-item">
+                <img src="watch_reveal.png" alt="The Beautiful Watch" class="watch-photo">
+            </div>
+            <p class="hint" style="margin-top: 15px;">Tap the watch</p>
+        </div>
+    </section>
+
+    <section id="screen-happy-mom" class="screen">
+        <div class="content">
+            <h1 class="elegant-title" style="margin-top: 20px; font-size: 3rem;">Love you always, Amma!</h1>
+            <div id="happy-mom-item" class="watch-container interactive-item">
+                <img src="happy_mom.png" alt="Happy Amma" class="watch-photo">
+            </div>
+            <p class="hint" style="margin-top: 15px;">Tap the photo</p>
+        </div>
+    </section>
+
+    <section id="screen-final-gift" class="screen">
+        <div class="content">
+            <h2 class="gold-text">A Moment to Cherish</h2>
+            <div id="final-gift-item" class="watch-container interactive-item">
+                <img src="gift.png" alt="Sharing the gift" class="watch-photo">
+            </div>
+            <p class="hint" style="margin-top: 15px;">Tap the photo</p>
+        </div>
+    </section>
+
+    <div id="popup-modal" class="modal hidden">
+        <div class="modal-content">
+            <p id="modal-text" class="elegant-script" style="font-size: 2.5rem; margin-top: 0;">Message</p>
+            <button id="modal-btn" class="action-btn">Next ⟶</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

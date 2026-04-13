@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&family=Nanum+Pen+Script&display=swap');
+
+:root {
+    --burgundy: #4A0E1B;
+    --cream: #FAF3E0;
+    --gold: #D4AF37;
+    --black: #111111;
+    --white: #FFFFFF;
+    --cake-icing: #FFF3E3;
+    --cake-sponge: #8B4513;
+    --cake-filling: #6B2737;
+}
+
+body {
+    margin: 0; padding: 0; background-color: var(--burgundy); color: var(--cream);
+    font-family: 'Lato', sans-serif; display: flex; justify-content: center;
+    align-items: center; min-height: 100vh; text-align: center; overflow-x: hidden;
+    touch-action: manipulation;
+}
+
+h1, h2 { font-family: 'Playfair Display', serif; font-weight: 400; }
+.hidden { display: none !important; }
+
+/* --- SCREEN TRANSITIONS --- */
+.screen {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+    transition: opacity 1s ease, transform 1s ease; opacity: 0;
+    pointer-events: none; transform: scale(0.95); z-index: 1;
+}
+.screen.active { opacity: 1; pointer-events: all; transform: scale(1); z-index: 10; }
+
+/* --- TYPOGRAPHY & BUTTONS --- */
+.elegant-title { font-size: 4rem; color: var(--cream); margin-bottom: 0.5rem; letter-spacing: -1px; line-height: 1.1; }
+.subtitle { font-size: 1.2rem; letter-spacing: 2px; color: rgba(250, 243, 224, 0.7); margin-bottom: 2rem; }
+.gold-text { font-size: 2.5rem; color: var(--gold); margin-bottom: 1rem; }
+.hint { font-size: 1rem; color: rgba(250, 243, 224, 0.7); font-style: italic; margin-top: 10px; }
+
+.action-btn {
+    background: transparent; border: 1px solid var(--gold); color: var(--gold);
+    padding: 12px 25px; font-family: 'Lato', sans-serif; font-size: 1.1rem;
+    cursor: pointer; transition: all 0.4s ease; border-radius: 4px; display: inline-block;
+    z-index: 20; position: relative;
+}
+.action-btn:hover { background: var(--gold); color: var(--burgundy); box-shadow: 0 0 20px rgba(212, 175, 55, 0.4); }
+
+/* --- GLOBAL POP-UP MODAL --- */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(17, 17, 17, 0.9); 
+    z-index: 999; display: flex; justify-content: center; align-items: center;
+    opacity: 1; transition: opacity 0.5s ease;
+}
+.modal.hidden { opacity: 0; pointer-events: none; }
+.modal-content {
+    background: var(--burgundy); border: 2px solid var(--gold);
+    padding: 3rem 2rem; border-radius: 12px; max-width: 80%; width: 350px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.8); text-align: center;
+    transform: scale(1); transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal.hidden .modal-content { transform: scale(0.8); }
+
+/* --- HIDDEN START TRIGGER --- */
+.hidden-spark { font-size: 2.5rem; color: var(--burgundy); text-shadow: 0 0 15px rgba(212, 175, 55, 0.3); cursor: pointer; transition: all 0.5s ease; display: inline-block; }
+.hidden-spark:hover { color: var(--gold); text-shadow: 0 0 25px rgba(212, 175, 55, 0.9); transform: scale(1.3) rotate(15deg); }
+
+/* --- POLAROIDS (Initial Screen Only) --- */
+.polaroid-gallery { display: flex; justify-content: center; gap: 15px; position: relative; z-index: 15; flex-wrap: wrap; }
+.polaroid { background-color: var(--burgundy); padding: 10px 10px 15px 10px; box-shadow: 0 10px 25px rgba(0,0,0,0.6); width: 160px; border: 1px solid rgba(212, 175, 55, 0.3); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.p1 { transform: rotate(-6deg) translateY(10px); } .p2 { transform: rotate(2deg) translateY(-10px); z-index: 2; } .p3 { transform: rotate(-4deg) translateY(5px); }
+.polaroid:hover { transform: scale(1.1) rotate(0deg); box-shadow: 0 15px 35px rgba(0,0,0,0.8); z-index: 20; border-color: var(--gold); }
+.photo-placeholder { width: 100%; height: 160px; object-fit: cover; background: #333; } 
+.caption { font-family: 'Nanum Pen Script', cursive; color: var(--gold); font-size: 1.5rem; margin-top: 10px; line-height: 1; }
+
+/* --- PREMIUM CAKE & CANDLE --- */
+.cake-area { position: relative; height: 250px; width: 300px; margin: 30px auto; display: flex; justify-content: center; }
+.cake-container { position: relative; width: 220px; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; }
+.cake-base { position: relative; width: 100%; height: 100px; display: flex; }
+.cake-main { width: 70%; height: 100%; background: var(--cake-sponge); border-top: 15px solid var(--cake-icing); border-radius: 10px 0 0 10px; position: relative; z-index: 2; }
+.cake-slice { width: 30%; height: 100%; background: var(--cake-sponge); border-top: 15px solid var(--cake-icing); border-radius: 0 10px 10px 0; transition: transform 1s ease, opacity 1s ease; position: relative; z-index: 2; }
+.cake-main::after, .cake-slice::after { content: ''; position: absolute; top: 35px; left: 0; width: 100%; height: 8px; background: var(--cake-filling); }
+.cake-slice.eaten { transform: translate(60px, 20px) rotate(15deg); opacity: 0; }
+
+/* Candle, Flame, Smoke */
+.candle { position: absolute; top: 105px; left: 50%; transform: translateX(-50%); z-index: 5; display: flex; flex-direction: column; align-items: center; }
+.candle-body { width: 12px; height: 45px; background: repeating-linear-gradient(45deg, #fff, #fff 5px, #ff4d4d 5px, #ff4d4d 10px); border-radius: 3px; box-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+.flame { width: 18px; height: 28px; background: #FFD700; border-radius: 50% 50% 20% 20%; margin-bottom: -5px; opacity: 0; transition: opacity 0.5s; box-shadow: 0 0 20px 5px rgba(255, 165, 0, 0.6); cursor: pointer; }
+.flame.lit { opacity: 1; animation: flicker 0.15s infinite alternate; }
+@keyframes flicker { 0% { transform: scale(1) rotate(-2deg); } 100% { transform: scale(1.1) rotate(2deg); } }
+.smoke { position: absolute; top: -20px; width: 15px; height: 15px; background: rgba(200, 200, 200, 0.6); border-radius: 50%; z-index: 6; opacity: 0; pointer-events: none; }
+.smoke.puff { animation: smokeRise 1.5s ease-out forwards; }
+@keyframes smokeRise { 0% { transform: translateY(0) scale(1); opacity: 0.8; } 100% { transform: translateY(-60px) scale(3); opacity: 0; } }
+
+/* Knife */
+.knife-tool { position: absolute; top: 20px; right: -20px; font-size: 3.5rem; cursor: pointer; z-index: 10; transition: transform 0.2s ease; }
+.knife-tool:hover { transform: scale(1.1); }
+.knife-tool.cutting { animation: sliceAction 1s forwards ease-in-out; }
+@keyframes sliceAction { 0% { transform: translate(0,0); } 40% { transform: translate(-130px, 30px) rotate(-30deg); } 60% { transform: translate(-130px, 120px) rotate(-30deg); } 100% { transform: translate(20px, 150px) rotate(20deg); opacity: 0; } }
+
+/* --- REVEALING BALLOONS --- */
+.balloon-container { display: flex; gap: 15px; justify-content: center; margin: 3rem 0; flex-wrap: wrap; }
+.balloon-wrapper { position: relative; width: 70px; height: 100px; display: flex; justify-content: center; align-items: center; }
+.balloon { font-size: 4rem; cursor: pointer; position: absolute; z-index: 2; transition: transform 0.2s; user-select: none; }
+.balloon:hover { transform: scale(1.1); }
+.balloon.popped { display: none; }
+.hidden-word { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); position: absolute; z-index: 1; opacity: 0; transition: opacity 0.4s ease; }
+.hidden-word.revealed { opacity: 1; animation: popText 0.4s ease forwards; }
+@keyframes popText { 0% { transform: scale(0.5); } 80% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
+/* --- SLIDESHOW PHOTOS (DEKSTOP/Laptop: Full width big photo) --- */
+.photo-stage { 
+    position: relative; 
+    height: 75vh; /* Take up 75% of screen height */
+    width: 100vw; /* Take full width of screen for centering */
+    margin: 0 auto; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    overflow: hidden; /* Safety */
+}
+
+.single-frame { 
+    background: transparent; /* No background frame for desktop */
+    padding: 0; 
+    border: none; /* No borders for desktop */
+    box-sizing: border-box; 
+    box-shadow: none; /* No shadow for desktop frame */
+    transform: none; /* No rotation for desktop */
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+}
+
+.single-frame img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; /* Contain to ensure the whole photo shows without cropping */
+    max-width: 60vw; /* Keep image from hitting screen edges */
+    max-height: 60vh;
+    transition: opacity 0.5s ease; 
+    border: 2px solid var(--gold); /* Add border and shadow to the photo itself */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+/* --- ELEGANT LETTER & IMAGES --- */
+.interactive-item { cursor: pointer; transition: transform 0.3s ease; user-select: none; margin: 1.5rem auto; display: inline-block;}
+.interactive-item:hover { transform: scale(1.05); }
+#gift-emoji { font-size: 6rem; }
+#envelope-icon { font-size: 6rem; }
+
+.letter-content { 
+    background: var(--black); 
+    border: 2px solid var(--gold); 
+    padding: 1.5rem 1rem 1.5rem 1.5rem; /* Adjusted padding */
+    border-radius: 8px; 
+    max-width: 95%; 
+    width: 450px; /* Limits width on big screens */
+    margin: 0 auto; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
+    cursor: pointer; 
+    transition: transform 0.2s; 
+}
+.letter-content:hover { transform: scale(1.02); }
+
+/* New Scrollable Area for Long Text */
+.scrollable-letter {
+    max-height: 55vh; /* Takes up 55% of the screen height maximum */
+    overflow-y: auto; /* Allows scrolling */
+    padding-right: 15px; /* Adds space so the scrollbar doesn't cover text */
+    text-align: left; /* Left align is much easier to read for long paragraphs */
+}
+
+/* Custom Elegant Gold Scrollbar */
+.scrollable-letter::-webkit-scrollbar { width: 6px; }
+.scrollable-letter::-webkit-scrollbar-track { background: rgba(212, 175, 55, 0.1); border-radius: 4px; }
+.scrollable-letter::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+/* Font Sizing specifically for the long letter */
+.elegant-script { font-family: 'Nanum Pen Script', cursive; color: var(--gold); line-height: 1.3; }
+.greeting { font-size: 2.2rem; margin-bottom: 1rem; margin-top: 0; }
+.body-text { font-size: 1.6rem; margin-bottom: 1rem; letter-spacing: 1px; }
+.sign-off { font-size: 2.2rem; text-align: right; margin-top: 1.5rem; margin-bottom: 0; }
+.continue-hint { text-align: center; margin-top: 1.5rem; margin-bottom: 0; font-size: 0.9rem; }
+/* --- WATCH REVEAL & PHOTOS --- */
+.watch-container { background-color: var(--black); padding: 15px; border: 2px solid var(--gold); border-radius: 12px; display: inline-block; margin-top: 1rem; box-shadow: 0 15px 40px rgba(0,0,0,0.8); }
+.watch-photo { width: 100%; max-width: 250px; border-radius: 6px; display: block; background: #222; }
+
+/* --- FALLING HEARTS --- */
+.heart { position: absolute; color: var(--gold); z-index: 5; pointer-events: none; animation: fall linear infinite; top: -50px; text-shadow: 0 0 10px rgba(212, 175, 55, 0.5); }
+@keyframes fall { 0% { transform: translateY(0) rotate(0deg); opacity: 0; } 10% { opacity: 1; } 90% { opacity: 1; } 100% { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+
+/* --- MOBILE RESPONSIVE MEDIA QUERIES --- */
+@media (max-width: 768px) {
+    .elegant-title { font-size: 3rem; }
+    .gold-text { font-size: 2rem; }
+    .polaroid-gallery { gap: 10px; }
+    .polaroid { width: 140px; }
+    .photo-placeholder { height: 140px; }
+    
+    .cake-area { transform: scale(0.9); margin: 10px auto; }
+    
+    /* Small Phone photo-stage can keep the Polaroid look, but with Contain */
+    .photo-stage { position: relative; height: 350px; width: 260px; margin: 0 auto 2rem auto; display: flex; justify-content: center; align-items: center;}
+    .single-frame { background: var(--white); padding: 10px 10px 30px 10px; border: 1px solid var(--gold); box-sizing: border-box; box-shadow: 0 10px 20px rgba(0,0,0,0.5); transform: rotate(-2deg); }
+    .single-frame img { width: 240px; height: 260px; object-fit: contain; background: #eee; transition: opacity 0.5s ease; border: none; box-shadow: none;}
+    
+    .letter-content { padding: 1.5rem; }
+    .elegant-script { font-size: 1.8rem; }
+    .balloon { font-size: 3.5rem; }
+}
