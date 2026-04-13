@@ -16,22 +16,20 @@ The journey begins with an elegant greeting and a Polaroid gallery of our favori
 ### 2. Make a Wish! (Interactive Cake)
 A custom-built interactive cake sequence. Users must tap to light the candle, tap again to blow it out (complete with a smoke animation!), and finally tap the knife to cut the cake. 
 > <img width="1244" height="546" alt="image" src="https://github.com/user-attachments/assets/0607e6bb-5ef7-4271-8cd8-54cecb6f2cc6" />
-**
+
 
 ### 3. Balloon Pop Game
 A fun, gamified section where popping four digital balloons reveals a hidden "You Are The Best!" message before moving to the next surprise.
-> **<img width="915" height="499" alt="image" src="https://github.com/user-attachments/assets/a5b62dc6-3c0b-42a5-b48e-7863b0651e54" />
-**
+> <img width="915" height="499" alt="image" src="https://github.com/user-attachments/assets/a5b62dc6-3c0b-42a5-b48e-7863b0651e54" />
+
 
 ### 4. Sweet Memories Slideshow
 An automated, responsive photo slideshow showcasing 20 beautiful memories. It features a large, cinematic display for laptops and an elegant contained view for mobile screens. Users can tap to advance or skip directly to the message.
-> **<img width="1330" height="759" alt="image" src="https://github.com/user-attachments/assets/37bf6518-a47e-4f28-bfb9-3dbead542b4e" />
-**
+> <img width="1330" height="759" alt="image" src="https://github.com/user-attachments/assets/37bf6518-a47e-4f28-bfb9-3dbead542b4e" />
 
 ### 5. A Special Message
 A digital envelope that opens to reveal a scrollable, elegantly styled, custom-written letter expressing love and gratitude.
-> **<img width="1336" height="589" alt="image" src="https://github.com/user-attachments/assets/1993a84d-d037-40e0-9828-81a451520732" />
-**
+> <img width="1336" height="589" alt="image" src="https://github.com/user-attachments/assets/1993a84d-d037-40e0-9828-81a451520732" />
 
 ### 6. The Grand Finale (Gift Reveal Sequence)
 A multi-stage sequence designed to build anticipation. It flows seamlessly using a global pop-up system:
@@ -40,10 +38,10 @@ A multi-stage sequence designed to build anticipation. It flows seamlessly using
 * **The Reveal:** Opening the box to show the beautiful watch.
 * **The Reaction:** A photo capturing the joy of the moment.
 * **A Moment to Cherish:** A final, beautiful picture of us sharing the gift, with an option to restart the journey.
-> **<img width="1119" height="568" alt="image" src="https://github.com/user-attachments/assets/176c8792-3260-4688-9bc5-032f4b45a515" />
-**
-> **<img width="891" height="540" alt="image" src="https://github.com/user-attachments/assets/44ffec7c-8343-4248-9a44-3e4d3ad11c37" />
-**
+> <img width="1119" height="568" alt="image" src="https://github.com/user-attachments/assets/176c8792-3260-4688-9bc5-032f4b45a515" />
+
+> <img width="891" height="540" alt="image" src="https://github.com/user-attachments/assets/44ffec7c-8343-4248-9a44-3e4d3ad11c37" />
+
 
 ---
 
