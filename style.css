@@ -150,15 +150,26 @@ h1, h2 { font-family: 'Playfair Display', serif; font-weight: 400; margin: 0 0 0
 #envelope-icon { font-size: 6rem; line-height: 1; }
 
 .letter-content { 
-    background: var(--black); border: 2px solid var(--gold); 
-    padding: 1.5rem 1rem 1.5rem 1.5rem; border-radius: 8px; 
-    max-width: 100%; width: 450px; margin: 0 auto; 
-    box-shadow: 0 10px 30px rgba(0,0,0,0.8); cursor: pointer; transition: transform 0.2s; 
+    background: var(--black); 
+    border: 2px solid var(--gold); 
+    padding: 1.5rem 1rem 1.5rem 1.5rem; 
+    border-radius: 8px; 
+    width: 90%; /* Changed to 90% so it always leaves a margin on mobile */
+    max-width: 450px; 
+    margin: 0 auto; 
+    box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
+    cursor: pointer; 
+    transition: transform 0.2s; 
 }
 .letter-content:hover { transform: scale(1.02); }
 
 .scrollable-letter {
-    max-height: 55vh; overflow-y: auto; padding-right: 15px; text-align: left; 
+    max-height: 55vh; 
+    overflow-y: auto; 
+    overflow-x: hidden; /* Prevents any accidental sideways scrolling */
+    padding-right: 25px; /* Increased this so text won't touch the scrollbar */
+    text-align: left; 
+    word-wrap: break-word; /* Forces text to stay inside the box */
 }
 .scrollable-letter::-webkit-scrollbar { width: 6px; }
 .scrollable-letter::-webkit-scrollbar-track { background: rgba(212, 175, 55, 0.1); border-radius: 4px; }
