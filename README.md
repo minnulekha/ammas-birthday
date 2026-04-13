@@ -10,8 +10,8 @@ The entire experience is accompanied by background music and designed to feel li
 
 ### 1. The Welcome Screen
 The journey begins with an elegant greeting and a Polaroid gallery of our favorite moments. A hidden "spark" (✦) triggers the background music and starts the experience.
-> **<img width="1343" height="588" alt="image" src="https://github.com/user-attachments/assets/41b5cd21-3cd7-47e7-9736-121ff9d215ac" />
-**
+> <img width="1343" height="588" alt="image" src="https://github.com/user-attachments/assets/41b5cd21-3cd7-47e7-9736-121ff9d215ac" />
+
 
 ### 2. Make a Wish! (Interactive Cake)
 A custom-built interactive cake sequence. Users must tap to light the candle, tap again to blow it out (complete with a smoke animation!), and finally tap the knife to cut the cake. 
