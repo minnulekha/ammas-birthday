@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slideImg = document.getElementById('slideshow-img');
     const skipBtn = document.getElementById('skip-slideshow-btn');
     let slideIndex = 1; 
-    const totalPhotos = 20;
+    const totalPhotos = 27;
     let slideshowInterval; 
 
     function goToNextSlide() {
