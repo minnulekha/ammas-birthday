@@ -246,3 +246,29 @@ h1, h2 { font-family: 'Playfair Display', serif; font-weight: 400; margin: 0 0 0
     .modal-content { padding: 2rem 1rem; }
     #modal-text { font-size: 2rem !important; }
 }
+/* --- BALLOON POP FRAGMENTS --- */
+/* Add these at the very bottom of your style.css */
+
+/* --- BALLOON POP FRAGMENTS --- */
+.balloon-fragment {
+    position: fixed;
+    pointer-events: none;
+    font-size: 1.8rem;
+    z-index: 9999;
+    white-space: nowrap;
+    filter: drop-shadow(0 0 5px var(--gold));
+    animation: fragmentExplode 0.8s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes fragmentExplode {
+    0% {
+        transform: translate(-50%, -50%) scale(1.5) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        /* This calc ensures they fly OUTWARD from the center */
+        transform: translate(calc(-50% + var(--move-x)), calc(-50% + var(--move-y))) 
+                   rotate(var(--rotate)) scale(0);
+        opacity: 0;
+    }
+}

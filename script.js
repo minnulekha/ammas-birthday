@@ -46,21 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(currentId).classList.remove('active');
         setTimeout(() => { 
             document.getElementById(nextId).classList.add('active'); 
-            
-            // Trigger slideshow automatically when entering the photos screen
-            if (nextId === 'screen-photos') {
-                startSlideshow();
-            }
+            if (nextId === 'screen-photos') startSlideshow();
         }, 1000); 
     }
 
-    // --- 1. HIDDEN START LOGIC (WITH MUSIC START) ---
+    // --- 1. START LOGIC ---
     const bgMusic = document.getElementById('bg-music');
-    
     document.getElementById('reveal-trigger').addEventListener('click', () => {
-        bgMusic.play().catch(error => {
-            console.log("Audio autoplay was blocked by the browser.", error);
-        });
+        bgMusic.play().catch(() => console.log("Music blocked"));
         showScreen('screen-home', 'screen-cake');
     });
 
@@ -72,8 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const slice = document.getElementById('slice');
     const instruct = document.getElementById('instruction');
 
-    let isLit = false;
-    let isBlownOut = false;
+    let isLit = false, isBlownOut = false;
 
     btnLight.addEventListener('click', () => {
         flame.classList.add('lit');
@@ -94,30 +86,58 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     knife.addEventListener('click', () => {
-        if (!isBlownOut) {
-            if (isLit) instruct.innerHTML = "Blow out the candle first! Tap the flame. 💨";
-            return; 
-        }
-        
+        if (!isBlownOut) return; 
         knife.classList.add('cutting');
         instruct.classList.add('hidden');
-        
         setTimeout(() => { slice.classList.add('eaten'); }, 600);
-        
         setTimeout(() => {
             triggerPopup("Yay! Ready for the next surprise?", "Next Surprise ⟶", "screen-balloons");
         }, 1500);
     });
 
-    // --- 3. BALLOONS LOGIC ---
+    // --- 3. BALLOONS LOGIC (SHATTERING ADDED) ---
     const balloons = document.querySelectorAll('.balloon');
     let poppedCount = 0;
+    const popSound = new Audio('pop.mp3');
+
+    function createBurst(x, y) {
+        const fragments = ['🎈', '✨', '💖', '✨']; // Different pieces popping out
+        for (let i = 0; i < 12; i++) {
+            const piece = document.createElement('div');
+            piece.className = 'balloon-fragment';
+            piece.innerHTML = fragments[Math.floor(Math.random() * fragments.length)];
+            
+            // Random direction and rotation
+            const moveX = (Math.random() - 0.5) * 400;
+            const moveY = (Math.random() - 0.5) * 400;
+            const rotate = Math.random() * 720;
+
+            piece.style.setProperty('--move-x', `${moveX}px`);
+            piece.style.setProperty('--move-y', `${moveY}px`);
+            piece.style.setProperty('--rotate', `${rotate}deg`);
+            
+            piece.style.left = `${x}px`;
+            piece.style.top = `${y}px`;
+
+            document.body.appendChild(piece);
+            setTimeout(() => piece.remove(), 800);
+        }
+    }
 
     balloons.forEach(balloon => {
         balloon.addEventListener('click', () => {
             if (!balloon.classList.contains('popped')) {
+                const rect = balloon.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                popSound.currentTime = 0;
+                popSound.play().catch(() => {});
+                createBurst(centerX, centerY);
+
                 balloon.classList.add('popped');
                 balloon.previousElementSibling.classList.add('revealed'); 
+                
                 poppedCount++;
                 if (poppedCount === balloons.length) {
                     setTimeout(() => { 
@@ -128,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 4. 20-IMAGE SLIDESHOW LOGIC ---
+    // --- 4. SLIDESHOW LOGIC ---
     const slideImg = document.getElementById('slideshow-img');
     const skipBtn = document.getElementById('skip-slideshow-btn');
     let slideIndex = 1; 
@@ -153,21 +173,16 @@ document.addEventListener('DOMContentLoaded', () => {
         slideIndex = 1;
         slideImg.src = `mom${slideIndex}.jpeg`;
         slideImg.style.opacity = 1; 
-        
         slideImg.addEventListener('click', goToNextSlide);
         slideshowInterval = setInterval(goToNextSlide, 3500); 
     }
 
-    function skipSlideshow() {
+    if(skipBtn) skipBtn.addEventListener('click', () => {
         clearInterval(slideshowInterval);
         triggerPopup("Skipping to the message!", "Open My Message ⟶", "screen-message");
-    }
+    });
 
-    if(skipBtn) {
-        skipBtn.addEventListener('click', skipSlideshow);
-    }
-
-    // --- 5. ELEGANT MESSAGE LOGIC ---
+    // --- 5. MESSAGE & GIFT LOGIC ---
     const envelope = document.getElementById('envelope');
     const openLetter = document.getElementById('open-letter');
 
@@ -180,46 +195,15 @@ document.addEventListener('DOMContentLoaded', () => {
         triggerPopup("I hope you liked my message ❤️", "One Last Thing... ⟶", "screen-gift");
     });
 
-    // --- 6. FINAL GIFT REVEAL SEQUENCE ---
-    const giftBox = document.getElementById('gift-box');
-    const watchBoxItem = document.getElementById('watch-box-item');
-    const watchRevealItem = document.getElementById('watch-reveal-item');
-    const happyMomItem = document.getElementById('happy-mom-item');
-    const finalGiftItem = document.getElementById('final-gift-item');
+    // Final sequence simplified
+    const setupClick = (id, msg, btn, target) => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('click', () => triggerPopup(msg, btn, target));
+    };
 
-    // Step 1: Tap Emoji -> Go to Watch Box
-    if (giftBox) {
-        giftBox.addEventListener('click', () => {
-            triggerPopup("A special gift just for you...", "Open Gift ⟶", "screen-watch-box");
-        });
-    }
-
-    // Step 2: Tap Watch Box -> Go to Watch Reveal
-    if (watchBoxItem) {
-        watchBoxItem.addEventListener('click', () => {
-            triggerPopup("Tada! Do you like it?", "Next ⟶", "screen-watch-reveal");
-        });
-    }
-
-    // Step 3: Tap Watch Reveal -> Go to Happy Mom Image
-    if (watchRevealItem) {
-        watchRevealItem.addEventListener('click', () => {
-            triggerPopup("Your happiness means everything.", "See Reaction ⟶", "screen-happy-mom");
-        });
-    }
-
-    // Step 4: Tap Happy Mom Image -> Go to Final Gift Photo
-    if (happyMomItem) {
-        happyMomItem.addEventListener('click', () => {
-            triggerPopup("Sharing this special moment together.", "See More ⟶", "screen-final-gift");
-        });
-    }
-
-    // Step 5: Tap Final Gift Photo -> Back to Start
-    if (finalGiftItem) {
-        finalGiftItem.addEventListener('click', () => {
-            triggerPopup("Want to experience it all again?", "⟵ Back to Start", "RELOAD");
-        });
-    }
-
+    setupClick('gift-box', "A special gift just for you...", "Open Gift ⟶", "screen-watch-box");
+    setupClick('watch-box-item', "Tada! Do you like it?", "Yeahh ! ⟶", "screen-watch-reveal");
+    setupClick('watch-reveal-item', "Your happiness means everything.", "Let's Open It ! ⟶", "screen-happy-mom");
+    setupClick('happy-mom-item', "Sharing this special moment together.", "See Reaction ⟶", "screen-final-gift");
+    setupClick('final-gift-item', "Want to experience it all again?", "⟵ Back to Start", "RELOAD");
 });
